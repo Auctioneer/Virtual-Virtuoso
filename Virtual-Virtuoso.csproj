@@ -75,9 +75,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AudioManage.cs" />
-    <Compile Include="Assets\CubeGlow.cs" />
-    <Compile Include="Assets\EasyController.cs" />
+    <Compile Include="Assets\Scripts\AudioManage.cs" />
+    <Compile Include="Assets\Scripts\CubeGlow.cs" />
+    <Compile Include="Assets\Scripts\EasyController.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />
