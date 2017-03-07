@@ -28,4 +28,12 @@ public class InitialCubeYPosition : MonoBehaviour {
         this.gameObject.transform.position = cubePosition;
 
     }
+
+    //Just crap for now, gotta work through the steps of a thing being clicked
+    void wasClicked()
+    {
+        //Wait a few seconds
+        //Tell GameManager to do scene change
+
+    }
 }
