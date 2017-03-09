@@ -30,11 +30,9 @@ public class GameManager : MonoBehaviour {
         return cubeHeight;
     }
 
-    //Move to next scene in the game)
+    //Move to next scene in the game
     public void nextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
-        //SceneManager.LoadScene(1);
     }
 }

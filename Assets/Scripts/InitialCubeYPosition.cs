@@ -9,6 +9,11 @@ public class InitialCubeYPosition : MonoBehaviour {
     Vector3 eyeCameraTransPosition;
     GameObject manager;
 
+    void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject);
+    }
+
     // Use this for initialization
     void Start ()
     {
@@ -43,7 +48,7 @@ public class InitialCubeYPosition : MonoBehaviour {
     IEnumerator beginSceneTransition()
     {
         //Wait a few seconds
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
 
         //Tell GameManager to do scene change
         manager.GetComponent<GameManager>().nextScene();

@@ -6,6 +6,10 @@ public class CubeGlow : MonoBehaviour
 {
     public GameObject cubeSelected;
     private AudioSource audioPlayer;
+    public GameObject manager;
+
+    //Height of cube when spawned
+    float initialCubeHeight;
 
     //Flag for whether it should play constantly
     private bool isActivated;
@@ -20,6 +24,18 @@ public class CubeGlow : MonoBehaviour
         isActivated = false;
         audioPlayer.Play();
         tempActive = false;
+        manager = GameObject.Find("GameManager");
+
+        //Get height from game manager
+        initialCubeHeight = manager.GetComponent<GameManager>().getCubeHeight();
+
+        //Set height for cube
+
+
+        Vector3 temp = new Vector3(0, initialCubeHeight, 0);
+        this.gameObject.transform.Translate(temp);
+        //this.gameObject.transform.position += temp;
+
     }
 
     private void OnEnable()
