@@ -36,6 +36,7 @@ public class EasyController : MonoBehaviour {
         {
             if (objectTouching.CompareTag("StartCube") == true)
             {
+                print("Definitely a start cube m8");
                 objectTouching.GetComponent<InitialCubeYPosition>().clickedBehaviour();
             }
 
