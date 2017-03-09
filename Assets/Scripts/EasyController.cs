@@ -26,23 +26,36 @@ public class EasyController : MonoBehaviour {
         objectTouching = null;
 	}
 	
-	// Update is called once per frame
+	// Make larger cube active
 	void Trigger (object sender, ClickedEventArgs e)
     {
         print("Click!");
 
+        
         if (objectTouching != null)
         {
-            objectTouching.GetComponent<CubeGlow>().SwitchActive();
-
-            if (objectTouching.GetComponent<CubeGlow>().GetActive() == false)
+            if (objectTouching.CompareTag("StartCube") == true)
             {
-                objectTouching.GetComponent<CubeGlow>().Deactivate();
+                objectTouching.GetComponent<InitialCubeYPosition>().clickedBehaviour();
+            }
+
+            //If it's a music cube, do the music behaviour
+            else if (objectTouching.CompareTag("LoopCube") == true)
+            {
+                //Move all this below stuff to the cube's script
+                objectTouching.GetComponent<CubeGlow>().SwitchActive();
+
+                if (objectTouching.GetComponent<CubeGlow>().GetActive() == false)
+                {
+                    objectTouching.GetComponent<CubeGlow>().Deactivate();
+                }
             }
         }
+        //else if (objectTouching.CompareTag"")
     }
 
     //If within box, solos it
+    //Only if we're at a certain stage though, so maybe do a check for this here?
     void PadClick(object sender, ClickedEventArgs e)
     {
         print("Pad click.");

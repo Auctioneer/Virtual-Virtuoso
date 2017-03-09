@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\AudioManage.cs" />
     <Compile Include="Assets\Scripts\CubeGlow.cs" />
     <Compile Include="Assets\Scripts\EasyController.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\InitialCubeYPosition.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
