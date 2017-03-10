@@ -9,15 +9,21 @@ public class InitialCubeYPosition : MonoBehaviour {
     Vector3 eyeCameraTransPosition;
     GameObject manager;
 
-    void Awake()
-    {
-        DontDestroyOnLoad(transform.gameObject);
-    }
+    //Can change this offset to suit
+    public float offset;
+
+    public GameObject cubeSelected;
 
     // Use this for initialization
     void Start ()
     {
         manager = GameObject.Find("GameManager");
+
+        if (offset == 0)
+        {
+            offset = 0.3f;
+        }
+
     }
 	
 	// Update is called once per frame
@@ -28,7 +34,7 @@ public class InitialCubeYPosition : MonoBehaviour {
         float eyeCameraYPosition = eyeCameraTransPosition.y;
 
         //Vary start cube's y position relative to the user's head
-        Vector3 cubePosition = new Vector3(1.005f, eyeCameraYPosition-0.3f, -0.099f);
+        Vector3 cubePosition = new Vector3(1.005f, eyeCameraYPosition-offset, -0.099f);
         this.gameObject.transform.position = cubePosition;
     }
 
@@ -38,7 +44,7 @@ public class InitialCubeYPosition : MonoBehaviour {
         print("We're in clicked behaviour m8");
 
         //Set cube height with game manager
-        manager.GetComponent<GameManager>().setCubeHeight(eyeCameraTransPosition.y - 0.3f);
+        manager.GetComponent<GameManager>().setCubeHeight(eyeCameraTransPosition.y - offset);
 
         //Call method to move to next scene
         StartCoroutine(beginSceneTransition());
@@ -53,5 +59,22 @@ public class InitialCubeYPosition : MonoBehaviour {
         //Tell GameManager to do scene change
         manager.GetComponent<GameManager>().nextScene();
         
+    }
+
+    //Highlight behaviour for cube
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("GameController") == true)
+        {
+            cubeSelected.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("GameController") == true)
+        {
+            cubeSelected.SetActive(false);
+        }
     }
 }

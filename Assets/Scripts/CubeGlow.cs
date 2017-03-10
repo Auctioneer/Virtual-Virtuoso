@@ -30,12 +30,8 @@ public class CubeGlow : MonoBehaviour
         initialCubeHeight = manager.GetComponent<GameManager>().getCubeHeight();
 
         //Set height for cube
-
-
         Vector3 temp = new Vector3(0, initialCubeHeight, 0);
         this.gameObject.transform.Translate(temp);
-        //this.gameObject.transform.position += temp;
-
     }
 
     private void OnEnable()

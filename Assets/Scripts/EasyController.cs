@@ -16,43 +16,64 @@ public class EasyController : MonoBehaviour {
     public delegate void UnmuteBroadcast();
     public static event UnmuteBroadcast OnUnmute;
 
+    //Whether the functionality of a control is active or not
+    bool triggerActive;
+    bool padLeftActive;
+    bool padRightActive;
+
+    //To be decremented (maybe) when I get left and right pads working
+    bool padActive;
+    
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        //Set up broadcasts and initial variables
         device = GetComponent<SteamVR_TrackedController>();
         device.TriggerClicked += Trigger;
         device.PadClicked += PadClick;
         device.PadUnclicked += PadUnClick;
         objectTouching = null;
+
+        //Starts up with only trigger active
+        triggerActive = true;
+        padActive = false;
+        padLeftActive = false;
+        padRightActive = false;
+
 	}
 	
-	// Make larger cube active
+	//Trigger behaviour
 	void Trigger (object sender, ClickedEventArgs e)
     {
         print("Click!");
 
-        
-        if (objectTouching != null)
+        //If we can use the trigger
+        if (triggerActive == true)
         {
-            if (objectTouching.CompareTag("StartCube") == true)
+            //Must be present to avoid null reference exception
+            if (objectTouching != null)
             {
-                print("Definitely a start cube m8");
-                objectTouching.GetComponent<InitialCubeYPosition>().clickedBehaviour();
-            }
-
-            //If it's a music cube, do the music behaviour
-            else if (objectTouching.CompareTag("LoopCube") == true)
-            {
-                //Move all this below stuff to the cube's script
-                objectTouching.GetComponent<CubeGlow>().SwitchActive();
-
-                if (objectTouching.GetComponent<CubeGlow>().GetActive() == false)
+                //If we're clicking the start cube, get it to do its thing
+                if (objectTouching.CompareTag("StartCube") == true)
                 {
-                    objectTouching.GetComponent<CubeGlow>().Deactivate();
+                    objectTouching.GetComponent<InitialCubeYPosition>().clickedBehaviour();
+                }
+
+                //If it's a music cube, do the music behaviour
+                else if (objectTouching.CompareTag("LoopCube") == true)
+                {
+                    //Move all this below stuff to the cube's script
+                    objectTouching.GetComponent<CubeGlow>().SwitchActive();
+
+                    if (objectTouching.GetComponent<CubeGlow>().GetActive() == false)
+                    {
+                        objectTouching.GetComponent<CubeGlow>().Deactivate();
+                    }
                 }
             }
+
         }
-        //else if (objectTouching.CompareTag"")
     }
 
     //If within box, solos it

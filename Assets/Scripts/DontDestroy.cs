@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeepCameraRig : MonoBehaviour {
+public class DontDestroy : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         DontDestroyOnLoad(this.gameObject);
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
