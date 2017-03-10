@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour {
     {
         //Standard cube height placeholder
         cubeHeight = 2;
+
+        //Keep Game Manager between scenes
+        DontDestroyOnLoad(this.gameObject);
 	}
 	
 	// Update is called once per frame
@@ -23,6 +26,7 @@ public class GameManager : MonoBehaviour {
     public void setCubeHeight(float firstCubeHeight)
     {
         cubeHeight = firstCubeHeight;
+        print("Height is " + cubeHeight);
     }
 
     public float getCubeHeight()
