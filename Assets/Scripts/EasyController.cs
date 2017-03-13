@@ -61,7 +61,8 @@ public class EasyController : MonoBehaviour {
                 }
 
                 //If it's a music cube, do the music behaviour
-                else if (objectTouching.CompareTag("LoopCube") == true)
+                //else if (objectTouching.CompareTag("LoopCube") == true)
+                else
                 {
                     //Move all this below stuff to the cube's script
                     objectTouching.GetComponent<CubeGlow>().SwitchActive();
