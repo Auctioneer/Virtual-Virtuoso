@@ -81,11 +81,15 @@ public class EasyController : MonoBehaviour {
     //Only if we're at a certain stage though, so maybe do a check for this here?
     void PadClick(object sender, ClickedEventArgs e)
     {
-        print("Pad click.");
-
-        if (objectTouching != null)
+        //If we can use the pad
+        if (padActive == true)
         {
-            MuteAllOthers();
+            print("Pad click.");
+
+            if (objectTouching != null)
+            {
+                MuteAllOthers();
+            }
         }
     }
 
@@ -141,5 +145,24 @@ public class EasyController : MonoBehaviour {
             objectTouching.GetComponent<CubeGlow>().SetTempActive(false);
         }
         objectTouching = null;
+    }
+
+    //PERMISSION SETTING FOR EACH SCENE
+    public void setPermissionsTriggerScene()
+    {
+        triggerActive = true;
+        padActive = false;
+    }
+
+    public void setPermissionsPadScene()
+    {
+        triggerActive = false;
+        padActive = true;
+    }
+
+    public void setPermissionsFullFunctionality()
+    {
+        triggerActive = true;
+        padActive = true;
     }
 }

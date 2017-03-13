@@ -6,7 +6,7 @@ public class CubeGlow : MonoBehaviour
 {
     public GameObject cubeSelected;
     private AudioSource audioPlayer;
-    public GameObject manager;
+    GameObject manager;
 
     //Height of cube when spawned
     float initialCubeHeight;
@@ -17,8 +17,8 @@ public class CubeGlow : MonoBehaviour
     //Flag for playing while highlighted
     private bool tempActive;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         audioPlayer = GetComponent<AudioSource>();
         isActivated = false;
@@ -69,6 +69,12 @@ public class CubeGlow : MonoBehaviour
         MuteAudio();
     }
 
+    public void Activate()
+    {
+        cubeSelected.SetActive(true);
+        SetAudioLoud();
+    }
+
     public void ChangeAudioVolume()
     {
         if (audioPlayer.volume == 0.0f)
@@ -87,7 +93,7 @@ public class CubeGlow : MonoBehaviour
         audioPlayer.volume = 0.124f;
     }
 
-    void UnMute()
+    public void UnMute()
     {
         if (isActivated == true)
         {
@@ -121,6 +127,11 @@ public class CubeGlow : MonoBehaviour
     public void SetTempActive(bool temp)
     {
         tempActive = temp;
+    }
+
+    public bool GetTempActive()
+    {
+        return tempActive;
     }
 
 }

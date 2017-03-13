@@ -8,12 +8,17 @@ public class TriggerSceneManager : MonoBehaviour {
 
     public GameObject triggerCube;
     GameObject manager;
-
+    public GameObject leftController;
+    public GameObject rightController;
 
 	// Use this for initialization
 	void Start ()
     {
         manager = GameObject.Find("GameManager");
+
+        //Disable all actions except trigger
+        leftController.GetComponent<EasyController>().setPermissionsTriggerScene();
+        rightController.GetComponent<EasyController>().setPermissionsTriggerScene();
     }
 	
 	// Update is called once per frame
