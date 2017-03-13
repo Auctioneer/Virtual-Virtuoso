@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class StartTeleporterTrigger : MonoBehaviour {
 
-    GameObject manager;
+    public GameObject manager;
+    Vector3 eyeCameraTransPosition;
+    public GameObject eyeCamera;
+    public float offset;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
-        manager = GameObject.Find("GameManager");
+        //manager = GameObject.Find("GameManager");
     }
 	
 	// Update is called once per frame
@@ -29,15 +32,19 @@ public class StartTeleporterTrigger : MonoBehaviour {
     }
 
     //Walking into the teleporter trigger initiates scene transition
-    private void OnTriggerEnter(Collider other)
+    public void teleportTriggered()
     {
-        if (other.gameObject.CompareTag("GameController") == true)
-        {
-            //TO DO: Add sound to confirm they're in the teleporter
+        //Get current position of user's head on the y axis
+        eyeCameraTransPosition = eyeCamera.transform.position;
+        float eyeCameraYPosition = eyeCameraTransPosition.y;
 
+        //Set that position in Game Manager
+        manager.GetComponent<GameManager>().setCubeHeight(eyeCameraTransPosition.y - offset);
 
-            //Call method to move to next scene
-            StartCoroutine(beginSceneTransition());
-        }
+        //TO DO: Add sound to confirm they're in the teleporter
+
+        //Call method to move to next scene
+        StartCoroutine(beginSceneTransition());
+
     }
 }

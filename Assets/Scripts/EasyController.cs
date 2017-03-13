@@ -116,14 +116,29 @@ public class EasyController : MonoBehaviour {
     {
         print("Controller trigger entered.");
         objectTouching = other.gameObject;
+        print(objectTouching.tag);
 
-        objectTouching.GetComponent<CubeGlow>().SetTempActive(true);
+        if (objectTouching.CompareTag("Teleporter") == true)
+        {
+            objectTouching.GetComponent<StartTeleporterTrigger>().teleportTriggered();
+        }
+        else
+        {
+            objectTouching.GetComponent<CubeGlow>().SetTempActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         print("Controller trigger exited.");
-        objectTouching.GetComponent<CubeGlow>().SetTempActive(false);
+        if (objectTouching.CompareTag("Teleporter") == true)
+        {
+
+        }
+        else
+        {
+            objectTouching.GetComponent<CubeGlow>().SetTempActive(false);
+        }
         objectTouching = null;
     }
 }
