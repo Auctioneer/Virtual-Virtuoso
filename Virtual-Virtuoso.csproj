@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\InitialCubeYPosition.cs" />
     <Compile Include="Assets\Scripts\PadSceneManager.cs" />
+    <Compile Include="Assets\Scripts\SomeoneElsesScript.cs" />
     <Compile Include="Assets\Scripts\StartTeleporterTrigger.cs" />
     <Compile Include="Assets\Scripts\TriggerSceneManager.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />

@@ -23,7 +23,10 @@ public class EasyController : MonoBehaviour {
 
     //To be decremented (maybe) when I get left and right pads working
     bool padActive;
-    
+
+    //Touchpad co-ordinate vector
+    Vector2 touchpadCoordinates;
+
 
     // Use this for initialization
     void Start ()
@@ -81,10 +84,13 @@ public class EasyController : MonoBehaviour {
     //Only if we're at a certain stage though, so maybe do a check for this here?
     void PadClick(object sender, ClickedEventArgs e)
     {
+        //Get co-ordinates of where the pad is being pressed
+        touchpadCoordinates = new Vector2(e.padX, e.padY);
+
         //If we can use the pad
         if (padActive == true)
         {
-            print("Pad click.");
+            print("Pad click at co-ordinates" + touchpadCoordinates);
 
             if (objectTouching != null)
             {
