@@ -18,8 +18,8 @@ public class EasyController : MonoBehaviour {
 
     //Whether the functionality of a control is active or not
     bool triggerActive;
-    bool padLeftActive;
-    bool padRightActive;
+    bool padTopActive;
+    bool padBottomActive;
 
     //To be decremented (maybe) when I get left and right pads working
     bool padActive;
@@ -41,8 +41,8 @@ public class EasyController : MonoBehaviour {
         //Starts up with only trigger active
         triggerActive = true;
         padActive = false;
-        padLeftActive = false;
-        padRightActive = false;
+        padBottomActive = false;
+        padTopActive = false;
 
 	}
 	
@@ -85,17 +85,26 @@ public class EasyController : MonoBehaviour {
     void PadClick(object sender, ClickedEventArgs e)
     {
         //Get co-ordinates of where the pad is being pressed
+        //Thankfully, the object e already stores them, how about that!
         touchpadCoordinates = new Vector2(e.padX, e.padY);
 
-        //If we can use the pad
+        //Depending on what part of the pad is clicked, a different action will be performed. Scale is -1 to 1 bottom to top
+        //For now, I'll say that the top part is for moving blocks, and the bottom part is for soloing them
         if (padActive == true)
         {
             print("Pad click at co-ordinates" + touchpadCoordinates);
+        }
 
+        //If the user is touching the below area and that area is active
+        if (padBottomActive == true && touchpadCoordinates.x < 1)
+        {
+            //If they're touching a musical block
             if (objectTouching != null)
             {
+                //Mute all the other blocks (apart from those marked as temp active
                 MuteAllOthers();
             }
+
         }
     }
 
@@ -164,6 +173,12 @@ public class EasyController : MonoBehaviour {
     {
         triggerActive = false;
         padActive = true;
+        padBottomActive = true;
+    }
+
+    public void setPermissionsMoveScene()
+    {
+
     }
 
     public void setPermissionsFullFunctionality()
