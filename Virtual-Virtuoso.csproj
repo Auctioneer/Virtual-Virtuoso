@@ -76,12 +76,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AudioManage.cs" />
+    <Compile Include="Assets\Scripts\ControllerSoloOverride.cs" />
     <Compile Include="Assets\Scripts\CubeGlow.cs" />
     <Compile Include="Assets\Scripts\DontDestroy.cs" />
     <Compile Include="Assets\Scripts\EasyController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\InitialCubeYPosition.cs" />
-    <Compile Include="Assets\Scripts\PadActiveMove.cs" />
     <Compile Include="Assets\Scripts\PadSceneManager.cs" />
     <Compile Include="Assets\Scripts\SomeoneElsesScript.cs" />
     <Compile Include="Assets\Scripts\StartTeleporterTrigger.cs" />

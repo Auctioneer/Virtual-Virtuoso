@@ -96,6 +96,7 @@ public class EasyController : MonoBehaviour {
           //  print(touchpadCoordinates.y);
        // }
 
+        //SOLOING FUNCTIONALITY
         //If the user is touching the below area and that area is active
         if (padBottomActive == true && touchpadCoordinates.y < 0)
         {
@@ -108,6 +109,8 @@ public class EasyController : MonoBehaviour {
                 MuteAllOthers();
             }
         }
+
+        //GRABBING/MOVING FUNCTIONALITY
         else if (padTopActive == true && touchpadCoordinates.y > 0)
         {
 
