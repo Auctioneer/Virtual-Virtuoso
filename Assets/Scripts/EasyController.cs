@@ -90,22 +90,28 @@ public class EasyController : MonoBehaviour {
 
         //Depending on what part of the pad is clicked, a different action will be performed. Scale is -1 to 1 bottom to top
         //For now, I'll say that the top part is for moving blocks, and the bottom part is for soloing them
-        if (padActive == true)
-        {
-            print("Pad click at co-ordinates" + touchpadCoordinates);
-        }
+       // if (padActive == true)
+       // {
+          //  print("Pad click at co-ordinates" + touchpadCoordinates);
+          //  print(touchpadCoordinates.y);
+       // }
 
         //If the user is touching the below area and that area is active
-        if (padBottomActive == true && touchpadCoordinates.x < 1)
+        if (padBottomActive == true && touchpadCoordinates.y < 0)
         {
+            print(touchpadCoordinates.y);
+
             //If they're touching a musical block
             if (objectTouching != null)
             {
                 //Mute all the other blocks (apart from those marked as temp active
                 MuteAllOthers();
             }
-
         }
+        else if (padTopActive == true && touchpadCoordinates.y > 0)
+        {
+
+        } 
     }
 
     //Mute event
@@ -174,6 +180,7 @@ public class EasyController : MonoBehaviour {
         triggerActive = false;
         padActive = true;
         padBottomActive = true;
+        padTopActive = false;
     }
 
     public void setPermissionsMoveScene()
@@ -186,4 +193,9 @@ public class EasyController : MonoBehaviour {
         triggerActive = true;
         padActive = true;
     }
+
+   // public bool getPadDownClicked()
+    //{
+        
+   // }
 }
