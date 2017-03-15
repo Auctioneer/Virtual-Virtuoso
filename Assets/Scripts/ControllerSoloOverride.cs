@@ -20,7 +20,7 @@ public class ControllerSoloOverride : EasyController
 
         //SOLOING FUNCTIONALITY
         //If the user is touching the below area and that area is active
-        if (padBottomActive == true && touchpadCoordinates.y< 0)
+        if (soloActive == true && touchpadCoordinates.y< 0)
         {
             print(touchpadCoordinates.y);
 
@@ -33,7 +33,7 @@ public class ControllerSoloOverride : EasyController
         }
 
         //GRABBING/MOVING FUNCTIONALITY
-        else if (padTopActive == true && touchpadCoordinates.y > 0)
+        else if (grabActive == true && touchpadCoordinates.y > 0)
         {
 
         } 

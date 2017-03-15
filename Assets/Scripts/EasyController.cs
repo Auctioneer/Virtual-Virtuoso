@@ -20,8 +20,8 @@ public class EasyController : MonoBehaviour {
 
     //Whether the functionality of a control is active or not
     bool triggerActive;
-    public bool padTopActive;
-    public bool padBottomActive;
+    public bool grabActive;
+    public bool soloActive;
 
     //To be decremented (maybe) when I get left and right pads working
     bool padActive;
@@ -50,8 +50,8 @@ public class EasyController : MonoBehaviour {
         //Starts up with only trigger active
         triggerActive = true;
         padActive = false;
-        padBottomActive = false;
-        padTopActive = false;
+        soloActive = false;
+        grabActive = false;
 
 	}
 	
@@ -107,7 +107,7 @@ public class EasyController : MonoBehaviour {
 
         //SOLOING FUNCTIONALITY
         //If the user is touching the below area and that area is active
-        if (padBottomActive == true && touchpadCoordinates.y < 0)
+        if (soloActive == true && touchpadCoordinates.y < 0)
         {
             print(touchpadCoordinates.y);
 
@@ -120,7 +120,7 @@ public class EasyController : MonoBehaviour {
         }
 
         //GRABBING/MOVING FUNCTIONALITY
-        else if (padTopActive == true && touchpadCoordinates.y > 0)
+        else if (grabActive == true && touchpadCoordinates.y > 0)
         {
 
         } 
@@ -187,13 +187,20 @@ public class EasyController : MonoBehaviour {
     {
         triggerActive = false;
         padActive = true;
-        padBottomActive = true;
-        padTopActive = false;
+        soloActive = true;
+        grabActive = false;
     }
 
     public void setPermissionsMoveScene()
     {
 
+    }
+
+    public void setPermissionsGrabScene()
+    {
+        triggerActive = true;
+        soloActive = true;
+        grabActive = true;
     }
 
     public void setPermissionsFullFunctionality()
