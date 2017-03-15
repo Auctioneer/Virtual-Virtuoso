@@ -23,6 +23,7 @@ public class TeleporterGrabTriggerTouching : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("LoopCube") == true)
         {
+            print("Arr, there be a loop cube in here!");
             isTouching = true;
         }
     }

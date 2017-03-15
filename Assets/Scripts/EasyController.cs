@@ -160,7 +160,7 @@ public class EasyController : MonoBehaviour {
         {
             objectTouching.GetComponent<StartTeleporterTrigger>().teleportTriggered();
         }
-        else
+        else if (objectTouching.CompareTag("LoopCube") == true || objectTouching.CompareTag("MusicCube") == true)
         {
             objectTouching.GetComponent<CubeGlow>().SetTempActive(true);
         }
@@ -169,11 +169,7 @@ public class EasyController : MonoBehaviour {
     private void OnTriggerExit(Collider other)
     {
         print("Controller trigger exited.");
-        if (objectTouching.CompareTag("Teleporter") == true)
-        {
-
-        }
-        else
+        if (objectTouching.CompareTag("LoopCube") == true || objectTouching.CompareTag("MusicCube") == true)
         {
             objectTouching.GetComponent<CubeGlow>().SetTempActive(false);
         }
