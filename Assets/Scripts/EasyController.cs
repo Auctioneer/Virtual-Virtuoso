@@ -6,7 +6,7 @@ public class EasyController : MonoBehaviour {
 
     private SteamVR_TrackedController device;
     private AudioSource targetAudio;
-    private GameObject objectTouching;
+    public GameObject objectTouching;
 
 
     //Soloing event
@@ -18,14 +18,14 @@ public class EasyController : MonoBehaviour {
 
     //Whether the functionality of a control is active or not
     bool triggerActive;
-    bool padTopActive;
-    bool padBottomActive;
+    public bool padTopActive;
+    public bool padBottomActive;
 
     //To be decremented (maybe) when I get left and right pads working
     bool padActive;
 
     //Touchpad co-ordinate vector
-    Vector2 touchpadCoordinates;
+    public Vector2 touchpadCoordinates;
 
 
     // Use this for initialization
@@ -37,6 +37,10 @@ public class EasyController : MonoBehaviour {
         device.PadClicked += PadClick;
         device.PadUnclicked += PadUnClick;
         objectTouching = null;
+
+        //Change dis
+        device.Gripped += grab;
+        device.Ungripped += releaseGrab;
 
         //Starts up with only trigger active
         triggerActive = true;
@@ -197,8 +201,23 @@ public class EasyController : MonoBehaviour {
         padActive = true;
     }
 
-   // public bool getPadDownClicked()
-    //{
-        
-   // }
+
+    //GRAB ACTION CURRENTLY ON GRIP BUT WE'LL CHANGE IT
+    //JUST TO MAKE IT EASIER FOR ME MAN
+    public void grab(object sender, ClickedEventArgs e)
+    {
+        if (objectTouching != null)
+        {
+            objectTouching.gameObject.transform.SetParent(gameObject.transform);
+        }
+    }
+
+    //Letting go of grip
+    public void releaseGrab(object sender, ClickedEventArgs e)
+    {
+        if (objectTouching != null)
+        {
+            objectTouching.gameObject.transform.parent = null;
+        }
+    }
 }
