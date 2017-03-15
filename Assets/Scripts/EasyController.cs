@@ -206,7 +206,7 @@ public class EasyController : MonoBehaviour {
     //JUST TO MAKE IT EASIER FOR ME MAN
     public void grab(object sender, ClickedEventArgs e)
     {
-        if (objectTouching != null)
+        if ((objectTouching != null) && objectTouching.CompareTag("LoopCube") == true)
         {
             objectTouching.gameObject.transform.SetParent(gameObject.transform);
         }

@@ -81,10 +81,12 @@
     <Compile Include="Assets\Scripts\DontDestroy.cs" />
     <Compile Include="Assets\Scripts\EasyController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\GrabSceneManager.cs" />
     <Compile Include="Assets\Scripts\InitialCubeYPosition.cs" />
     <Compile Include="Assets\Scripts\PadSceneManager.cs" />
     <Compile Include="Assets\Scripts\SomeoneElsesScript.cs" />
     <Compile Include="Assets\Scripts\StartTeleporterTrigger.cs" />
+    <Compile Include="Assets\Scripts\TeleporterGrabTriggerTouching.cs" />
     <Compile Include="Assets\Scripts\TriggerSceneManager.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
