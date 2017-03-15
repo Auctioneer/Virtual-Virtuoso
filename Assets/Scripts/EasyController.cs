@@ -8,6 +8,8 @@ public class EasyController : MonoBehaviour {
     private AudioSource targetAudio;
     public GameObject objectTouching;
 
+    GameObject heldObject;
+
 
     //Soloing event
     public delegate void MuteBroadcast();
@@ -37,6 +39,9 @@ public class EasyController : MonoBehaviour {
         device.PadClicked += PadClick;
         device.PadUnclicked += PadUnClick;
         objectTouching = null;
+
+        //For grabbing objects
+        heldObject = null;
 
         //Change dis
         device.Gripped += grab;
@@ -208,16 +213,18 @@ public class EasyController : MonoBehaviour {
     {
         if ((objectTouching != null) && objectTouching.CompareTag("LoopCube") == true)
         {
-            objectTouching.gameObject.transform.SetParent(gameObject.transform);
+            heldObject = objectTouching;
+
+            heldObject.gameObject.transform.SetParent(gameObject.transform);
         }
     }
 
     //Letting go of grip
     public void releaseGrab(object sender, ClickedEventArgs e)
     {
-        if (objectTouching != null)
+        if (heldObject != null)
         {
-            objectTouching.gameObject.transform.parent = null;
+            heldObject.gameObject.transform.parent = null;
         }
     }
 }
