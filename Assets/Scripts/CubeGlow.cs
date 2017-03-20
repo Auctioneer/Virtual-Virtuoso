@@ -17,6 +17,9 @@ public class CubeGlow : MonoBehaviour
     //Flag for playing while highlighted
     private bool tempActive;
 
+    //This is what colour the box will change to after we highlight it for the first time
+    public Material afterHighlightMaterial;
+
     // Use this for initialization
     void Start ()
     {
@@ -51,6 +54,14 @@ public class CubeGlow : MonoBehaviour
         if (other.gameObject.CompareTag("GameController") == true)
         {
             cubeSelected.SetActive(true);
+
+            //Now that the user has 'discovered' the loop sound, we'll change the original box's colour to match
+            //I used to do this with instrument types but instead we can just change the material (default red)
+            if (afterHighlightMaterial != null)
+            {
+                GetComponent<Renderer>().material = afterHighlightMaterial;
+            }
+
             SetAudioLoud();
         }
     }
