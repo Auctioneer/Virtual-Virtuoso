@@ -11,6 +11,9 @@ public class CubeGlow : MonoBehaviour
     //Height of cube when spawned
     float initialCubeHeight;
 
+    //Height of cube during play (will decide on volume of block)
+    float cubeHeight;
+
     //Flag for whether it should play constantly
     private bool isActivated;
 
@@ -86,6 +89,7 @@ public class CubeGlow : MonoBehaviour
         SetAudioLoud();
     }
 
+    //I don't think I actually use this
     public void ChangeAudioVolume()
     {
         if (audioPlayer.volume == 0.0f)
@@ -101,14 +105,18 @@ public class CubeGlow : MonoBehaviour
     
     void SetAudioLoud()
     {
-        audioPlayer.volume = 0.124f;
+        //audioPlayer.volume = 0.124f;
+
+        //EXPERIMENTAL
+        audioPlayer.volume = 1.0f;
     }
 
     public void UnMute()
     {
         if (isActivated == true)
         {
-            audioPlayer.volume = 0.124f;
+            //audioPlayer.volume = 0.124f;
+            SetAudioLoud();
         }
     }
 

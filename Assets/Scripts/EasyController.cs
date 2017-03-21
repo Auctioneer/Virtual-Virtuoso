@@ -96,20 +96,21 @@ public class EasyController : MonoBehaviour {
         //Get co-ordinates of where the pad is being pressed
         //Thankfully, the object e already stores them, how about that!
         touchpadCoordinates = new Vector2(e.padX, e.padY);
+        print(touchpadCoordinates.y);
 
         //Depending on what part of the pad is clicked, a different action will be performed. Scale is -1 to 1 bottom to top
         //For now, I'll say that the top part is for moving blocks, and the bottom part is for soloing them
-       // if (padActive == true)
-       // {
-          //  print("Pad click at co-ordinates" + touchpadCoordinates);
-          //  print(touchpadCoordinates.y);
-       // }
+        // if (padActive == true)
+        // {
+        //  print("Pad click at co-ordinates" + touchpadCoordinates);
+        //  print(touchpadCoordinates.y);
+        // }
 
         //SOLOING FUNCTIONALITY
         //If the user is touching the below area and that area is active
         if (soloActive == true && touchpadCoordinates.y < 0)
         {
-            print(touchpadCoordinates.y);
+            
 
             //If they're touching a musical block
             if (objectTouching != null)
@@ -122,7 +123,12 @@ public class EasyController : MonoBehaviour {
         //GRABBING/MOVING FUNCTIONALITY
         else if (grabActive == true && touchpadCoordinates.y > 0)
         {
+            if ((objectTouching != null) && objectTouching.CompareTag("LoopCube") == true)
+            {
+                heldObject = objectTouching;
 
+                heldObject.gameObject.transform.SetParent(gameObject.transform);
+            }
         } 
     }
 
@@ -139,6 +145,11 @@ public class EasyController : MonoBehaviour {
     {
         print("Pad release.");
         UnMuteAll();
+
+        if (heldObject != null)
+        {
+            heldObject.gameObject.transform.parent = null;
+        }
     }
 
     void UnMuteAll()
@@ -207,6 +218,8 @@ public class EasyController : MonoBehaviour {
     {
         triggerActive = true;
         padActive = true;
+        soloActive = true;
+        grabActive = true;
     }
 
 
