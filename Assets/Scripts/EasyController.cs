@@ -74,10 +74,10 @@ public class EasyController : MonoBehaviour {
             float heightDifference = currentYPosition - initY;
 
             //Get current volume of cube
-            float currentCubeVolume = heldObject.GetComponent<CubeGlow>().GetVolume();
+            //float currentCubeVolume = heldObject.GetComponent<CubeGlow>().GetVolume();
 
             //New volume will be the two added together (if float is negative it'll be a reduction)
-            float newVolume = currentCubeVolume + heightDifference;
+            float newVolume = 0.5f + heightDifference;
 
             //Experiment time!
             //Haha this seems to work
@@ -93,8 +93,6 @@ public class EasyController : MonoBehaviour {
             {
                 newVolume = 1;
             }
-
-            print("Current controller height: " + currentYPosition + " height difference: " + heightDifference + " current cube volume: " + currentCubeVolume + " new volume: " + newVolume);
 
             //And finally set the new volume
             heldObject.GetComponent<CubeGlow>().SetVolume(newVolume);
