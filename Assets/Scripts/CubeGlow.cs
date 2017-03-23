@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CubeGlow : MonoBehaviour
 {
@@ -40,14 +41,30 @@ public class CubeGlow : MonoBehaviour
 
     private void OnEnable()
     {
-        EasyController.OnMute += MuteAllExcept;
-        EasyController.OnUnmute += UnMute;
+        if (SceneManager.GetActiveScene().name.Equals("SoloScene"))
+        {
+            ControllerSoloOverride.OnMute += MuteAllExcept;
+            ControllerSoloOverride.OnUnmute += UnMute;
+        }
+        else
+        {
+            EasyController.OnMute += MuteAllExcept;
+            EasyController.OnUnmute += UnMute;
+        }
     }
 
     private void OnDisable()
     {
-        EasyController.OnMute -= MuteAllExcept;
-        EasyController.OnUnmute -= UnMute;
+        if (SceneManager.GetActiveScene().name.Equals("SoloScene"))
+        {
+            ControllerSoloOverride.OnMute -= MuteAllExcept;
+            ControllerSoloOverride.OnUnmute -= UnMute;
+        }
+        else
+        {
+            EasyController.OnMute -= MuteAllExcept;
+            EasyController.OnUnmute -= UnMute;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -103,12 +120,6 @@ public class CubeGlow : MonoBehaviour
     
     void SetAudioLoud()
     {
-        //audioPlayer.volume = 0.124f;
-
-        //EXPERIMENTAL
-        //audioPlayer.volume = 1.0f;
-
-        //EVEN MORE EXPERIMENTAL
         audioPlayer.mute = false;
     }
 
@@ -116,7 +127,6 @@ public class CubeGlow : MonoBehaviour
     {
         if (isActivated == true)
         {
-            //audioPlayer.volume = 0.124f;
             SetAudioLoud();
         }
     }
@@ -131,7 +141,6 @@ public class CubeGlow : MonoBehaviour
 
     void MuteAudio()
     {
-        //audioPlayer.volume = 0.0f;
         audioPlayer.mute = true;
     }
 

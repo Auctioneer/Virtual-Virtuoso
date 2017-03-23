@@ -42,8 +42,8 @@ public class PadSceneManager : MonoBehaviour
     IEnumerator beginTransition()
     {
         //Wait a few seconds
-        //Bit longer than initial teleport because we wanna listen to the loop for a bit
-        yield return new WaitForSeconds(4.0f);
+        //Bit longer than initial teleport because we wanna listen to the loop for a bit?
+        yield return new WaitForSeconds(10.0f);
 
         //Tell GameManager to do scene change
         manager.GetComponent<GameManager>().nextScene();
