@@ -11,9 +11,6 @@ public class CubeGlow : MonoBehaviour
     //Height of cube when spawned
     float initialCubeHeight;
 
-    //Height of cube during play (will decide on volume of block)
-    float cubeHeight;
-
     //Flag for whether it should play constantly
     private bool isActivated;
 
