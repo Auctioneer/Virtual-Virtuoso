@@ -183,6 +183,8 @@ public class EasyController : MonoBehaviour {
         {
             heldObject.gameObject.transform.parent = null;
         }
+
+        heldObject = null;
     }
 
     void UnMuteAll()
@@ -275,5 +277,7 @@ public class EasyController : MonoBehaviour {
         {
             heldObject.gameObject.transform.parent = null;
         }
+
+        heldObject = null;
     }
 }
