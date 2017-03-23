@@ -20,10 +20,6 @@ public class PadSceneManager : MonoBehaviour
     {
         manager = GameObject.Find("GameManager");
 
-        //Disable all actions except pad
-        leftController.GetComponent<EasyController>().setPermissionsPadScene();
-        rightController.GetComponent<EasyController>().setPermissionsPadScene();
-
         //Get the boxes in the background playing
         onBox1.GetComponent<CubeGlow>().Activate();
         onBox2.GetComponent<CubeGlow>().Activate();

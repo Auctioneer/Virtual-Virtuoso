@@ -100,6 +100,7 @@ public class CubeGlow : MonoBehaviour
 
     public void Activate()
     {
+        isActivated = true;
         cubeSelected.SetActive(true);
         SetAudioLoud();
     }
@@ -125,6 +126,8 @@ public class CubeGlow : MonoBehaviour
 
     public void UnMute()
     {
+        print("Cubes are activated: " + isActivated);
+
         if (isActivated == true)
         {
             SetAudioLoud();

@@ -86,7 +86,6 @@
     <Compile Include="Assets\Scripts\MainSceneManager.cs" />
     <Compile Include="Assets\Scripts\PadSceneManager.cs" />
     <Compile Include="Assets\Scripts\ReadySceneDelay.cs" />
-    <Compile Include="Assets\Scripts\SomeoneElsesScript.cs" />
     <Compile Include="Assets\Scripts\StartTeleporterTrigger.cs" />
     <Compile Include="Assets\Scripts\TeleporterGrabTriggerTouching.cs" />
     <Compile Include="Assets\Scripts\TriggerSceneManager.cs" />

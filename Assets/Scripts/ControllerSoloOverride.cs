@@ -16,9 +16,6 @@ public class ControllerSoloOverride : MonoBehaviour
     public delegate void UnmuteBroadcast();
     public static event UnmuteBroadcast OnUnmute;
 
-    //To be decremented (maybe) when I get left and right pads working
-    bool padActive;
-
     //Touchpad co-ordinate vector
     public Vector2 touchpadCoordinates;
 

@@ -22,7 +22,18 @@ public class GrabSceneManager : MonoBehaviour {
         //We move on if the cube is in the target zone and is not being held by the player (i.e. it's null)
 		if ((targetZone.GetComponent<TeleporterGrabTriggerTouching>().getIsTouching() == true) && (cube.transform.parent == null))
         {
-            manager.GetComponent<GameManager>().nextScene();
+            StartCoroutine(beginTransition());
         }
-	}
+    }
+
+    IEnumerator beginTransition()
+    {
+        //Wait a few seconds
+        //Bit longer than initial teleport because we wanna listen to the loop for a bit?
+        yield return new WaitForSeconds(2.0f);
+
+        //Tell GameManager to do scene change
+        manager.GetComponent<GameManager>().nextScene();
+    }
+}
 }
