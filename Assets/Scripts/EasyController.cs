@@ -73,16 +73,8 @@ public class EasyController : MonoBehaviour {
             //Calculate difference
             float heightDifference = currentYPosition - initY;
 
-            //Get current volume of cube
-            //float currentCubeVolume = heldObject.GetComponent<CubeGlow>().GetVolume();
-
-            //New volume will be the two added together (if float is negative it'll be a reduction)
+            //New volume will be difference + middle volume (if float is negative it'll be a reduction)
             float newVolume = 0.5f + heightDifference;
-
-            //Experiment time!
-            //Haha this seems to work
-            //Ahh shoot no it doesn't
-            //newVolume = newVolume * 0.5f;
 
             //But we can't have the value outwith 0 and 1, as that's our volume parameters, so a quick 'if' will fix that
             if (newVolume < 0)
