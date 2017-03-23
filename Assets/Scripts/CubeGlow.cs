@@ -29,6 +29,7 @@ public class CubeGlow : MonoBehaviour
         audioPlayer = GetComponent<AudioSource>();
         isActivated = false;
         audioPlayer.Play();
+        audioPlayer.mute = true;
         tempActive = false;
         manager = GameObject.Find("GameManager");
 
@@ -108,7 +109,10 @@ public class CubeGlow : MonoBehaviour
         //audioPlayer.volume = 0.124f;
 
         //EXPERIMENTAL
-        audioPlayer.volume = 1.0f;
+        //audioPlayer.volume = 1.0f;
+
+        //EVEN MORE EXPERIMENTAL
+        audioPlayer.mute = false;
     }
 
     public void UnMute()
@@ -130,7 +134,8 @@ public class CubeGlow : MonoBehaviour
 
     void MuteAudio()
     {
-        audioPlayer.volume = 0.0f;
+        //audioPlayer.volume = 0.0f;
+        audioPlayer.mute = true;
     }
 
     public void SwitchActive()
@@ -151,6 +156,18 @@ public class CubeGlow : MonoBehaviour
     public bool GetTempActive()
     {
         return tempActive;
+    }
+
+    public float GetVolume()
+    {
+        float currentVolume = audioPlayer.volume;
+
+        return currentVolume;
+    }
+
+    public void SetVolume(float volume)
+    {
+        audioPlayer.volume = volume;
     }
 
 }

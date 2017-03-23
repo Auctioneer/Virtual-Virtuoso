@@ -10,6 +10,9 @@ public class EasyController : MonoBehaviour {
 
     GameObject heldObject;
 
+    //For volume
+    GameObject manager;
+    float initY;
 
     //Soloing event
     public delegate void MuteBroadcast();
@@ -53,10 +56,48 @@ public class EasyController : MonoBehaviour {
         soloActive = false;
         grabActive = false;
 
+        //Get initial cube heights for volume calculation
+        manager = GameObject.Find("GameManager");
+        initY = manager.GetComponent<GameManager>().getCubeHeight();
 	}
-	
-	//Trigger behaviour
-	void Trigger (object sender, ClickedEventArgs e)
+
+    //Update is used for changing volume
+    private void Update()
+    {
+        //We only need to do this if we're holding an object, obviously
+        if (heldObject != null)
+        {
+            //Get current controller height (can't get cube height because it's parented to controller)
+            float currentYPosition = this.gameObject.transform.position.y;
+
+            //Calculate difference
+            float heightDifference = currentYPosition - initY;
+
+            //Get current volume of cube
+            float currentCubeVolume = heldObject.GetComponent<CubeGlow>().GetVolume();
+
+            //New volume will be the two added together (if float is negative it'll be a reduction)
+            float newVolume = currentCubeVolume + heightDifference;
+
+            //But we can't have the value outwith 0 and 1, as that's our volume parameters, so a quick 'if' will fix that
+            if (newVolume < 0)
+            {
+                newVolume = 0;
+            }
+            else if (newVolume > 1)
+            {
+                newVolume = 1;
+            }
+
+            print("newVolume = " + newVolume);
+
+            //And finally set the new volume
+            heldObject.GetComponent<CubeGlow>().SetVolume(newVolume);
+        } 
+    }
+
+    //Trigger behaviour
+    void Trigger (object sender, ClickedEventArgs e)
     {
         print("Click!");
 
@@ -99,19 +140,11 @@ public class EasyController : MonoBehaviour {
         print(touchpadCoordinates.y);
 
         //Depending on what part of the pad is clicked, a different action will be performed. Scale is -1 to 1 bottom to top
-        //For now, I'll say that the top part is for moving blocks, and the bottom part is for soloing them
-        // if (padActive == true)
-        // {
-        //  print("Pad click at co-ordinates" + touchpadCoordinates);
-        //  print(touchpadCoordinates.y);
-        // }
 
         //SOLOING FUNCTIONALITY
         //If the user is touching the below area and that area is active
         if (soloActive == true && touchpadCoordinates.y < 0)
         {
-            
-
             //If they're touching a musical block
             if (objectTouching != null)
             {
