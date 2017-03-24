@@ -210,9 +210,14 @@ public class EasyController : MonoBehaviour {
     private void OnTriggerExit(Collider other)
     {
         print("Controller trigger exited.");
-        if (objectTouching.CompareTag("LoopCube") == true || objectTouching.CompareTag("MusicCube") == true)
+
+        if (objectTouching != null)
         {
-            objectTouching.GetComponent<CubeGlow>().SetTempActive(false);
+
+            if (objectTouching.CompareTag("LoopCube") == true || objectTouching.CompareTag("MusicCube") == true)
+            {
+                objectTouching.GetComponent<CubeGlow>().SetTempActive(false);
+            }
         }
         objectTouching = null;
     }
