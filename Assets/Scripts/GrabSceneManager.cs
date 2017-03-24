@@ -8,12 +8,18 @@ public class GrabSceneManager : MonoBehaviour {
     public GameObject targetZone;
     GameObject manager;
 
-	// Use this for initialization
-	void Start ()
+    AudioSource soundPlayer;
+    bool soundPlayed;
+
+    // Use this for initialization
+    void Start ()
     {
         //TO DO - SET PERMISSIONS FOR THIS SCENE
 
         manager = GameObject.Find("GameManager");
+
+        soundPlayer = GetComponent<AudioSource>();
+        soundPlayed = false;
     }
 	
 	// Update is called once per frame
@@ -28,6 +34,12 @@ public class GrabSceneManager : MonoBehaviour {
 
     IEnumerator beginTransition()
     {
+        if (soundPlayed == false)
+        {
+            soundPlayer.Play();
+            soundPlayed = true;
+        }
+
         //Wait a few seconds
         //Bit longer than initial teleport because we wanna listen to the loop for a bit?
         yield return new WaitForSeconds(2.0f);
@@ -36,4 +48,4 @@ public class GrabSceneManager : MonoBehaviour {
         manager.GetComponent<GameManager>().nextScene();
     }
 }
-}
+

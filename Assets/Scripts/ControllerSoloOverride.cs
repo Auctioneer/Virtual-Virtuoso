@@ -19,6 +19,10 @@ public class ControllerSoloOverride : MonoBehaviour
     //Touchpad co-ordinate vector
     public Vector2 touchpadCoordinates;
 
+    //FOR SOLO SCENE!
+    bool padClicked;
+    bool padUnclicked;
+
     // Use this for initialization
     void Start()
     {
@@ -28,6 +32,9 @@ public class ControllerSoloOverride : MonoBehaviour
         device.PadClicked += PadClick;
         device.PadUnclicked += PadUnClick;
         objectTouching = null;
+
+        padClicked = false;
+        padUnclicked = false;
 
     }
 
@@ -79,6 +86,9 @@ public class ControllerSoloOverride : MonoBehaviour
             //If they're touching a musical block
             if (objectTouching != null)
             {
+                //Stage 1 get!
+                padClicked = true;
+
                 //Mute all the other blocks (apart from those marked as temp active
                 MuteAllOthers();
             }
@@ -96,6 +106,12 @@ public class ControllerSoloOverride : MonoBehaviour
 
     void PadUnClick(object sender, ClickedEventArgs e)
     {
+        //Stage 2 get!
+        if (padClicked == true)
+        {
+            padUnclicked = true;
+        }
+
         print("Pad release.");
         UnMuteAll();
     }
@@ -133,5 +149,10 @@ public class ControllerSoloOverride : MonoBehaviour
             objectTouching.GetComponent<CubeGlow>().SetTempActive(false);
         }
         objectTouching = null;
+    }
+
+    public bool getPadSuccess()
+    {
+        return padUnclicked;
     }
 }

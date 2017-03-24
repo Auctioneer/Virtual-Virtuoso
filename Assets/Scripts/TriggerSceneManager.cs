@@ -11,10 +11,16 @@ public class TriggerSceneManager : MonoBehaviour {
     public GameObject leftController;
     public GameObject rightController;
 
-	// Use this for initialization
-	void Start ()
+    AudioSource soundPlayer;
+    bool soundPlayed;
+
+    // Use this for initialization
+    void Start ()
     {
         manager = GameObject.Find("GameManager");
+
+        soundPlayer = GetComponent<AudioSource>();
+        soundPlayed = false;
 
         //Disable all actions except trigger
         leftController.GetComponent<EasyController>().setPermissionsTriggerScene();
@@ -33,6 +39,12 @@ public class TriggerSceneManager : MonoBehaviour {
 
     IEnumerator beginTransition()
     {
+        if (soundPlayed == false)
+        {
+            soundPlayer.Play();
+            soundPlayed = true;
+        }
+
         //Wait a few seconds
         //Bit longer than initial teleport because we wanna listen to the loop for a bit
         yield return new WaitForSeconds(2.5f);

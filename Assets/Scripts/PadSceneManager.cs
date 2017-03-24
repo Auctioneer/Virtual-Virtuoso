@@ -15,10 +15,16 @@ public class PadSceneManager : MonoBehaviour
     public GameObject onBox1;
     public GameObject onBox2;
 
+    AudioSource soundPlayer;
+    bool soundPlayed;
+
     // Use this for initialization
     void Start()
     {
         manager = GameObject.Find("GameManager");
+
+        soundPlayer = GetComponent<AudioSource>();
+        soundPlayed = false;
 
         //Get the boxes in the background playing
         onBox1.GetComponent<CubeGlow>().Activate();
@@ -28,8 +34,8 @@ public class PadSceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //When the cube is temp activated, we can move on
-        if (padCube.GetComponent<CubeGlow>().GetTempActive() == true)
+        //When the success variable has been activated, we can move on
+        if ((leftController.GetComponent<ControllerSoloOverride>().getPadSuccess() == true) || (rightController.GetComponent<ControllerSoloOverride>().getPadSuccess() == true))
         {
             StartCoroutine(beginTransition());
         }
@@ -37,9 +43,15 @@ public class PadSceneManager : MonoBehaviour
 
     IEnumerator beginTransition()
     {
+        if (soundPlayed == false)
+        {
+            soundPlayer.Play();
+            soundPlayed = true;
+        }
+
         //Wait a few seconds
         //Bit longer than initial teleport because we wanna listen to the loop for a bit?
-        yield return new WaitForSeconds(10.0f);
+        yield return new WaitForSeconds(3.0f);
 
         //Tell GameManager to do scene change
         manager.GetComponent<GameManager>().nextScene();
