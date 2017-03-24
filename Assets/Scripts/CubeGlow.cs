@@ -126,8 +126,6 @@ public class CubeGlow : MonoBehaviour
 
     public void UnMute()
     {
-        print("Cubes are activated: " + isActivated);
-
         if (isActivated == true)
         {
             SetAudioLoud();
