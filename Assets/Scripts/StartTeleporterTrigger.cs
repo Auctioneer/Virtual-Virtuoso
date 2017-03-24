@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StartTeleporterTrigger : MonoBehaviour {
 
-    public GameObject manager;
+    GameObject manager;
     Vector3 eyeCameraTransPosition;
     public GameObject eyeCamera;
     public float offset;
@@ -12,18 +13,17 @@ public class StartTeleporterTrigger : MonoBehaviour {
     AudioSource soundPlayer;
     bool soundPlayed;
 
+    public string nextScene;
+
     // Use this for initialization
     void Start ()
     {
         soundPlayer = GetComponent<AudioSource>();
         soundPlayed = false;
+
+        manager = GameObject.Find("GameManager");
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     //Coroutine for changing scene
     IEnumerator beginSceneTransition()
     {
@@ -37,21 +37,29 @@ public class StartTeleporterTrigger : MonoBehaviour {
         yield return new WaitForSeconds(1.5f);
 
         //Tell GameManager to do scene change
-        manager.GetComponent<GameManager>().nextScene();
+        manager.GetComponent<GameManager>().changeScene(nextScene);
 
     }
 
     //Walking into the teleporter trigger initiates scene transition
     public void teleportTriggered()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+         {
+            //Get current position of user's head on the y axis
+            eyeCameraTransPosition = eyeCamera.transform.position;
+            float eyeCameraYPosition = eyeCameraTransPosition.y;
+
+            //Set that position in Game Manager
+            manager.GetComponent<GameManager>().setCubeHeight(eyeCameraTransPosition.y - offset);
+        }
+
         //Get current position of user's head on the y axis
-        eyeCameraTransPosition = eyeCamera.transform.position;
-        float eyeCameraYPosition = eyeCameraTransPosition.y;
+        //eyeCameraTransPosition = eyeCamera.transform.position;
+        //float eyeCameraYPosition = eyeCameraTransPosition.y;
 
         //Set that position in Game Manager
-        manager.GetComponent<GameManager>().setCubeHeight(eyeCameraTransPosition.y - offset);
-
-        //TO DO: Add sound to confirm they're in the teleporter
+        //manager.GetComponent<GameManager>().setCubeHeight(eyeCameraTransPosition.y - offset);
 
         //Call method to move to next scene
         StartCoroutine(beginSceneTransition());
