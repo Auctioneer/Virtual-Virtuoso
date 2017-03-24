@@ -11,6 +11,9 @@ public class GrabSceneManager : MonoBehaviour {
     AudioSource soundPlayer;
     bool soundPlayed;
 
+    public GameObject leftController;
+    public GameObject rightController;
+
     // Use this for initialization
     void Start ()
     {
@@ -20,6 +23,9 @@ public class GrabSceneManager : MonoBehaviour {
 
         soundPlayer = GetComponent<AudioSource>();
         soundPlayed = false;
+
+        leftController.GetComponent<EasyController>().setPermissionsGrabScene();
+        rightController.GetComponent<EasyController>().setPermissionsGrabScene();
     }
 	
 	// Update is called once per frame

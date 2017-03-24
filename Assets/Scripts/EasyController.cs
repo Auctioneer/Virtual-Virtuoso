@@ -232,14 +232,10 @@ public class EasyController : MonoBehaviour {
         grabActive = false;
     }
 
-    public void setPermissionsMoveScene()
-    {
-
-    }
-
     public void setPermissionsGrabScene()
     {
         triggerActive = true;
+        padActive = true;
         soloActive = true;
         grabActive = true;
     }

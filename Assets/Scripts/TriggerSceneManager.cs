@@ -47,7 +47,7 @@ public class TriggerSceneManager : MonoBehaviour {
 
         //Wait a few seconds
         //Bit longer than initial teleport because we wanna listen to the loop for a bit
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(3.1f);
 
         //Tell GameManager to do scene change
         manager.GetComponent<GameManager>().nextScene();

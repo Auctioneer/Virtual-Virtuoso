@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
-    //Height of all the cubes in the game (storing this value between scenes
+    //Height of all the cubes in the game (storing this value between scenes)
     float cubeHeight;
 
 	// Use this for initialization
