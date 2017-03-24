@@ -9,10 +9,14 @@ public class StartTeleporterTrigger : MonoBehaviour {
     public GameObject eyeCamera;
     public float offset;
 
+    AudioSource soundPlayer;
+    bool soundPlayed;
+
     // Use this for initialization
     void Start ()
     {
-        //manager = GameObject.Find("GameManager");
+        soundPlayer = GetComponent<AudioSource>();
+        soundPlayed = false;
     }
 	
 	// Update is called once per frame
@@ -23,6 +27,12 @@ public class StartTeleporterTrigger : MonoBehaviour {
     //Coroutine for changing scene
     IEnumerator beginSceneTransition()
     {
+        if (soundPlayed == false)
+        {
+            soundPlayer.Play();
+            soundPlayed = true;
+        }
+
         //Wait a few seconds
         yield return new WaitForSeconds(1.5f);
 
