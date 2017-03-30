@@ -227,6 +227,7 @@ public class EasyController : MonoBehaviour {
     {
         triggerActive = true;
         padActive = false;
+        grabActive = false;
     }
 
     public void setPermissionsPadScene()
@@ -258,7 +259,7 @@ public class EasyController : MonoBehaviour {
     //JUST TO MAKE IT EASIER FOR ME MAN
     public void grab(object sender, ClickedEventArgs e)
     {
-        if ((objectTouching != null) && objectTouching.CompareTag("LoopCube") == true)
+        if ((objectTouching != null) && (objectTouching.CompareTag("LoopCube") == true) && (grabActive == true))
         {
             heldObject = objectTouching;
 
