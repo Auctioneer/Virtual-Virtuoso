@@ -10,7 +10,7 @@ public class MainSceneManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //Disable all actions except pad
+        //Enable all actions
         leftController.GetComponent<EasyController>().setPermissionsFullFunctionality();
         rightController.GetComponent<EasyController>().setPermissionsFullFunctionality();
     }

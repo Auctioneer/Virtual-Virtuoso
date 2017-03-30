@@ -12,8 +12,8 @@ public class PadSceneManager : MonoBehaviour
     public GameObject leftController;
     public GameObject rightController;
 
-    public GameObject onBox1;
-    public GameObject onBox2;
+    GameObject onBox1;
+    GameObject onBox2;
 
     AudioSource soundPlayer;
     bool soundPlayed;
@@ -26,9 +26,19 @@ public class PadSceneManager : MonoBehaviour
         soundPlayer = GetComponent<AudioSource>();
         soundPlayed = false;
 
+        onBox1 = GameObject.Find("OnBox1");
+        onBox2 = GameObject.Find("OnBox2");
+
         //Get the boxes in the background playing
-        onBox1.GetComponent<CubeGlow>().Activate();
-        onBox2.GetComponent<CubeGlow>().Activate();
+        if (onBox1 != null)
+        {
+            onBox1.GetComponent<CubeGlow>().Activate();
+        }
+        if (onBox2 != null)
+        {
+            onBox2.GetComponent<CubeGlow>().Activate();
+        }
+        
     }
 
     // Update is called once per frame

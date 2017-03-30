@@ -52,9 +52,9 @@ public class EasyController : MonoBehaviour {
 
         //Starts up with only trigger active
         triggerActive = true;
-        padActive = false;
-        soloActive = false;
-        grabActive = false;
+        padActive = true;
+        soloActive = true;
+        grabActive = true;
 
         //Get initial cube heights for volume calculation
         manager = GameObject.Find("GameManager");
@@ -132,7 +132,7 @@ public class EasyController : MonoBehaviour {
         //Get co-ordinates of where the pad is being pressed
         //Thankfully, the object e already stores them, how about that!
         touchpadCoordinates = new Vector2(e.padX, e.padY);
-        print(touchpadCoordinates.y);
+        print(touchpadCoordinates.y + " " + soloActive);
 
         //Depending on what part of the pad is clicked, a different action will be performed. Scale is -1 to 1 bottom to top
 
@@ -252,6 +252,7 @@ public class EasyController : MonoBehaviour {
         padActive = true;
         soloActive = true;
         grabActive = true;
+        print("Set grabActive to " + grabActive);
     }
 
 
@@ -259,6 +260,8 @@ public class EasyController : MonoBehaviour {
     //JUST TO MAKE IT EASIER FOR ME MAN
     public void grab(object sender, ClickedEventArgs e)
     {
+        print("Grab is active = " + grabActive);
+
         if ((objectTouching != null) && (objectTouching.CompareTag("LoopCube") == true) && (grabActive == true))
         {
             heldObject = objectTouching;
